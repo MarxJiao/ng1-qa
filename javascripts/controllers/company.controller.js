@@ -5,11 +5,11 @@
 marxBlog.controller('companyCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.company = [
         {
-            time: "2015年9月 - 现在: ",
+            time: "2016年9月 - 现在: ",
             position: '百度糯米 -- 前端开发工程师'
         },
         {
-            time: "2015年6月 - 2015年8月: ",
+            time: "2015年6月 - 2016年8月: ",
             position: '百度质量部 -- 测试开发工程师'
         },
         {
