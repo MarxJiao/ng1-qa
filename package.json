@@ -1,0 +1,13 @@
+{
+  "name": "marxjiao.github.io",
+  "version": "0.0.1",
+  "description": "个人网站",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarxJiao/marxjiao.github.com.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.7.9"
+  }
+}

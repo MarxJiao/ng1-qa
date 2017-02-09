@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <title>矫健的简历</title>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="description" content="Marxjiao.GitHub.io/resume/ : 矫健简历">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+        <link rel="stylesheet" media="screen" href="stylesheets/stylesheet.css">
+    </head>
+
+    <body ng-app="marxBlog">
+        <div ng-controller="AppCtrl" layout="column" style="height: 100%" ng-cloak>
+
+            <!--加载动画-->
+            <div layout="row" ng-show="loading" layout-align="space-around" class="loading">
+                <md-progress-circular md-mode="indeterminate"  md-diameter="96"></md-progress-circular>
+            </div>
+
+            <section id="resume-content" ng-show="!loading" layout="row" flex  md-swipe-right="toggleLeft()">
+                <md-sidenav
+                    class="md-sidenav-left"
+                    md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-md')"
+                    md-disable-backdrop
+                    md-whiteframe="4"
+                    md-swipe-left="toggleLeft()">
+                    <header class="nav-header">
+                        <a href="/resume/" class="avatar">
+                            <img src="images/marx.jpg" alt="avatar">
+                            <h1 class="avatar-header">矫健</h1>
+                        </a>
+                    </header>
+                    <ul>
+                        <li class="nav-item"><md-button ng-click="getAnchor('aboutme')" ng-class="{active: localHash == 'aboutme'}">关于我</md-button></li>
+                        <li class="nav-item"><md-button ng-click="getAnchor('skills')" ng-class="{active: localHash == 'skills'}">技术栈</md-button></li>
+                        <li class="nav-item"><md-button ng-click="getAnchor('work')" ng-class="{active: localHash == 'work'}">工作经历</md-button></li>
+                        <li class="nav-item"><md-button ng-click="getAnchor('experience')" ng-class="{active: localHash == 'experience'}">项目经历</md-button></li>
+                        <li class="nav-item"><md-button ng-click="getAnchor('parttime')" ng-class="{active: localHash == 'parttime'}">开源项目</md-button></li>
+                        <li class="nav-item"><md-button ng-click="getAnchor('contact')" ng-class="{active: localHash == 'contact'}">联系我</md-button></li>
+                    </ul>
+                </md-sidenav>
+                <div layout="column" flex>
+                    <md-toolbar hide-gt-md layout-padding class="md-whiteframe-glow-z1">
+                        <div class="md-toolbar-tools">
+                            <md-button md-no-focus-style="true" class="md-icon-button md-primary" ng-click="toggleLeft()" aria-label="Settings">
+                                <md-icon md-svg-icon="images/ic_menu_black_36px.svg"></md-icon>
+                            </md-button>
+                            <h2>
+                                <span>resume</span>
+                            </h2>
+                        </div>
+                    </md-toolbar>
+                    <md-content>
+                        <div class="resume-content">
+                            
+                            <!-- 关于我 -->
+                            <section sec ng-controller="basicCtrl" id="aboutme">
+                                <h1>关于我</h1>
+                                <p>前端开发测试工程师，擅长JavaScript、html、CSS，熟悉html5、CSS3。熟练运用jQuery、bootstrap、angular.js等前端框架，熟练使用grunt、fis等前端构建工具进行辅助开发。独立负责过angularjs单页应用的前端开发。熟练使用Photoshop、Illustractor等设计工具，能独立完成网站设计及前端开发。</p>
+                            </section>
+                            <!-- /关于我 -->
+
+                            <!-- 技术栈 -->
+                            <section sec id="skills">
+                                <h1>技术栈</h1>
+                                <div layout="row" layout-wrap ng-controller="skillsCtrl">
+                                    <div  flex-xs="50" flex-sm="33" flex-md="33" flex-gt-md="15" layout layout-align="center center" ng-repeat="skill in skills">
+                                        <md-whiteframe class="skill-rate md-whiteframe-2dp" >
+                                            <degree data-rate="{{skill.rate}}"></degree>
+                                            <div  layout layout-align="center center" class="skill-name">{{skill.name}}</div>
+                                        </md-whiteframe>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- /技术栈 -->
+
+                            <!-- 工作经历 -->
+                            <section sec ng-controller="companyCtrl" id="work">
+                                <h1>工作经历</h1>
+                                <!--<md-subheader class="md-primary">工作经历</md-subheader>-->
+                                <md-list-item ng-repeat="item in company">
+                                    <p>{{item.time}}{{item.position}}</p>
+                                </md-list-item>
+                            </section>
+                            <!-- /工作经历 -->
+
+                            <!-- 项目经历 -->
+                            <section sec ng-controller="projectsCtrl" id="experience">
+                                <h1>项目经历</h1>
+                                <div layout="row" layout-wrap>
+                                    <div flex-gt-sm="32" flex-sm="45" flex-xs="100"  ng-repeat="project in projects">
+                                        <md-card>
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">{{project.name}}</span>
+                                                    <span class="md-subhead">{{project.time}}</span>
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <p>{{project.content}}</p>
+                                            </md-card-content>
+                                            <md-card-actions>
+                                                <span class="resume-tag" ng-repeat="tag in project.tags">{{tag}}</span>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- /项目经历 -->
+
+                            <!-- 开源项目 -->
+                            <section sec ng-controller="openSourseCtrl" id="parttime">
+                                <h1>开源项目</h1>
+                                <div layout="row" layout-wrap>
+                                    <div flex-gt-sm="32" flex-sm="45" flex-xs="100" ng-repeat="project in openSourses">
+                                        <md-card>
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">
+                                                        {{project.name}}
+                                                        <a class="git-link" href="{{project.link}}">
+                                                            <svg aria-hidden="true" class="octicon octicon-mark-github" height="28" version="1.1" viewBox="0 0 16 16" width="28">
+                                                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+                                                                </path>
+                                                            </svg>
+                                                        </a>
+                                                    </span>
+                                                    <span class="md-subhead">{{project.time}}</span>
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <p>{{project.introduction}}</p>
+                                            </md-card-content>
+                                            <md-card-actions>
+                                                <span class="resume-tag" ng-repeat="tag in project.tags">{{tag}}</span>
+                                            </md-card-actions>
+                                        </md-card>
+                                    </div>
+                                    
+                                </div>
+                            </section>
+                            <!-- /开源项目 -->
+
+                            <section sec ng-controller="basicCtrl" id="contact" ng-init="changeLoadStatus()">
+                                <h1>联系我</h1>
+                                <!--<md-subheader class="md-primary">基本信息</md-subheader>-->
+                                <md-list>
+                                    <md-list-item>
+                                        <md-button md-no-focus-style class="md-icon-button md-primary" href="mailto:marxjiao@gmail.com" aria-label="mail">
+                                            <md-icon md-svg-icon="images/ic_mail_black_36px.svg"></md-icon>
+                                        </md-button>
+                                        marxjiao@gmail.com
+                                    </md-list-item>
+                                </md-list>
+                                <md-list>
+                                    <md-list-item>
+                                        <md-button md-no-focus-style class="md-icon-button md-primary" href="tel:18500394411" aria-label="phone">
+                                            <md-icon md-svg-icon="images/ic_phone_black_36px.svg"></md-icon>
+                                        </md-button>
+                                        18500394411
+                                    </md-list-item>
+                                </md-list>
+                            </section>
+                        </div>
+                    </md-content>
+                </div>
+            </section>
+            
+        </div> 
+        <script src="https://cdn.bootcss.com/angular.js/1.5.7/angular.min.js"></script>        
+        <!--<script src="bower_components/angular/angular.min.js"></script>-->
+        <script src="https://cdn.bootcss.com/angular.js/1.5.7/angular-aria.min.js"></script>
+        <!--<script src="bower_components/angular-aria/angular-aria.min.js"></script>-->
+        <script src="https://cdn.bootcss.com/angular.js/1.5.7/angular-animate.min.js"></script>
+        <!--<script src="bower_components/angular-animate/angular-animate.min.js"></script>-->
+        <script src="bower_components/angular-material/angular-material.min.js"></script>
+        <script src="javascripts/main.js"></script>
+
+        <!--控制器-->
+        <script src="javascripts/controllers/app.controller.js"></script>
+        <script src="javascripts/controllers/left.controller.js"></script>
+        <script src="javascripts/controllers/basicInfo.controller.js"></script>
+        <script src="javascripts/controllers/skills.controller.js"></script>
+        <script src="javascripts/controllers/company.controller.js"></script>
+        <script src="javascripts/controllers/project.controller.js"></script>
+        <script src="javascripts/controllers/openSourse.controller.js"></script>
+
+        <!--指令-->
+        <script src="javascripts/directives/sectionHeader.directive.js"></script>
+        <script src="javascripts/directives/degree.directive.js"></script>
+        
+    </body>    
+</html>
