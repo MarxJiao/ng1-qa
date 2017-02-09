@@ -5,12 +5,16 @@
 marxBlog.controller('companyCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.company = [
         {
-            time: "2015年6月 - 现在: ",
-            position: '百度 -- 前端测试开发工程师'
+            time: "2015年9月 - 现在 ",
+            position: '百度糯米 -- 前端开发工程师'
+        },
+        {
+            time: "2015年6月 - 2015年8月 ",
+            position: '百度质量部 -- 测试开发工程师'
         },
         {
             time: "2014年8月 - 12月: ",
-            position: '百度 -- 实习'
+            position: '百度质量部 -- 实习'
         }
     ]
     document.getElementById('work').onClick = function (ev) {
