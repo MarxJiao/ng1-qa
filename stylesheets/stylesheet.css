@@ -192,3 +192,7 @@ md-list-item, md-list-item .md-list-item-inner {
 .loading {
     height: 100px;
 }
+
+#contact a {
+    color: black;
+}
