@@ -34,6 +34,7 @@
                     </header>
                     <ul>
                         <li class="nav-item"><md-button ng-click="getAnchor('aboutme')" ng-class="{active: localHash == 'aboutme'}">关于我</md-button></li>
+                        <li class="nav-item"><md-button ng-click="getAnchor('edu')" ng-class="{active: localHash == 'edu'}">教育经历</md-button></li>
                         <li class="nav-item"><md-button ng-click="getAnchor('skills')" ng-class="{active: localHash == 'skills'}">技术栈</md-button></li>
                         <li class="nav-item"><md-button ng-click="getAnchor('work')" ng-class="{active: localHash == 'work'}">工作经历</md-button></li>
                         <li class="nav-item"><md-button ng-click="getAnchor('experience')" ng-class="{active: localHash == 'experience'}">项目经历</md-button></li>
@@ -58,9 +59,19 @@
                             <!-- 关于我 -->
                             <section sec ng-controller="basicCtrl" id="aboutme">
                                 <h1>关于我</h1>
-                                <p>前端开发测试工程师，2015年毕业于华北电力大学动力工程系。擅长JavaScript、html、CSS，熟悉html5、CSS3。熟练运用jQuery、vue、angular等前端库和框架，了解node.js。熟练使用webpack、fis等前端构建工具进行辅助开发。独立负责过angular单页应用的前端开发。熟练使用Photoshop、Illustractor等设计工具，能独立完成网站设计及前端开发。</p>
+                                <p>前端开发测试工程师。擅长JavaScript、html、CSS，熟悉html5、CSS3。熟练运用jQuery、vue、angular等前端库和框架，了解node.js。熟练使用webpack、fis等前端构建工具进行辅助开发。独立负责过angular单页应用的前端开发。熟练使用Photoshop、Illustractor等设计工具，能独立完成网站设计及前端开发。</p>
                             </section>
                             <!-- /关于我 -->
+
+
+                            <!-- 教育经历 -->
+                            <section sec id="edu">
+                                <h1>教育经历</h1>
+                                <md-list-item>
+                                    <p>2011年9月 - 2015年6月：华北电力大学（保定）热能与动力工程专业</p>
+                                </md-list-item>
+                            </section>
+                            <!-- /教育经历 -->
 
                             <!-- 技术栈 -->
                             <section sec id="skills">
@@ -75,6 +86,7 @@
                                 </div>
                             </section>
                             <!-- /技术栈 -->
+
 
                             <!-- 工作经历 -->
                             <section sec ng-controller="companyCtrl" id="work">
